@@ -12,7 +12,10 @@ This software is created for **educational purposes only**. It is designed to de
   - Activated by creating an empty file named `TESTDIR`
   - Uses reversible encryption with `TEST.key`
   - Includes automatic decryption via `Decryptortest.py`
-- **Cross-Platform Support**: Works on various operating systems
+- **Killswitch**: To exclude folders from being encrypted
+  - Activated by creating an empty file named `PREFC`
+  - Kill `notera.py` with `os._exit(0)` as it starts
+- **Cross-Platform Support**: Not yet. Only windows. May work on others if you edit line 23 in `notera.py`
 - **Fast and Efficient**: Quick file processing and encryption
 - **Recursive Operation**: Can process files in nested directories
 
