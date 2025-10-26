@@ -1,6 +1,6 @@
 # Notera
 
-A Python-based file encryption tool designed for educational purposes and security research. This project demonstrates basic encryption techniques and file system operations in Python.
+A Python-based ransomware without ransom designed for educational purposes and security research. This project demonstrates basic encryption techniques and file system operations in Python.
 
 ## ⚠️ Educational Disclaimer
 
